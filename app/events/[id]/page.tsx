@@ -1,9 +1,9 @@
 import { createClient } from "@/lib/supabase/server";
 import { notFound } from "next/navigation";
 import Link from "next/link";
-import Image from "next/image"; // <-- Import Next.js Image
+import Image from "next/image";
 import MemoryForm from "./memory-form";
-import PhotoUpload from "./photo-upload"; // <-- Import the uploader
+import PhotoUpload from "./photo-upload";
 
 export default async function EventDetailPage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;
@@ -55,7 +55,6 @@ export default async function EventDetailPage({ params }: { params: Promise<{ id
 
       <hr className="my-8 border-gray-200 dark:border-zinc-800" />
 
-      {/* Photos Section */}
       <div className="space-y-6 mb-12">
         <h2 className="text-2xl font-bold">Photos</h2>
         <PhotoUpload eventId={event.id} />
@@ -70,6 +69,7 @@ export default async function EventDetailPage({ params }: { params: Promise<{ id
                   src={photo.url}
                   alt="Event photo"
                   fill
+                  unoptimized
                   className="object-cover hover:scale-105 transition-transform duration-300"
                   sizes="(max-width: 768px) 50vw, 33vw"
                 />
@@ -81,7 +81,6 @@ export default async function EventDetailPage({ params }: { params: Promise<{ id
 
       <hr className="my-8 border-gray-200 dark:border-zinc-800" />
 
-      {/* Memories Section */}
       <div className="space-y-6">
         <h2 className="text-2xl font-bold">Memories & Notes</h2>
         <MemoryForm eventId={event.id} />
